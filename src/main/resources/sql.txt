@@ -1,0 +1,35 @@
+with orders_details_tmp as(
+	SELECT
+	orderid,
+	sum(unitprice * quantity) OVER W total
+	FROM
+	ORDER_DETAILS
+	WINDOW W AS (PARTITION BY orderid order by orderid asc)
+),
+orders_details_tmp2 as (
+	SELECT
+	distinct
+	EXTRACT(YEAR FROM date) AS year,
+	EXTRACT(MONTH FROM date) as month,
+	o.customerid,
+	od.total
+	FROM
+	orders_details_tmp od
+	inner JOIN orders o
+	ON o.orderid = od.orderid
+)
+SELECT
+DISTINCT
+	tmp2.year,
+	tmp2.month,
+	FIRST_VALUE(tmp2.customerid) OVER CUSTOMER_LOW,
+	tmp2.total
+	FROM
+	orders_details_tmp2 tmp2
+	where tmp2.total = (
+		select max(total)
+		from orders_details_tmp2 tmp3
+		where tmp3.year = tmp2.year and tmp3.month = tmp2.month
+		order by tmp2.customerid asc limit 1)
+	WINDOW CUSTOMER_LOW AS (PARTITION BY tmp2.year,tmp2.month order by tmp2.customerid ASC)
+	order by year,month

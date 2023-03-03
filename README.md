@@ -110,3 +110,8 @@ Save people
 - Junit
 - Postgrest
 - JPA
+
+## Sql query
+
+  - the solution for sql query challenge is located inside the follow folder resources/sql.txt
+
