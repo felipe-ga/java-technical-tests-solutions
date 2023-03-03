@@ -23,7 +23,8 @@ import javax.validation.constraints.NotNull;
 public class PeopleEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "peopleSequence", sequenceName = "peopleSequence", initialValue = 10000, allocationSize = 100)
+    @GeneratedValue(generator = "peopleSequence")
     private Integer id;
 
     @NotEmpty(message = "name is is required")
