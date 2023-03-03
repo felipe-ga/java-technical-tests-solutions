@@ -9,7 +9,7 @@ public class PeopleMapper {
     public static PeopleEntity peopleToPeopleEntity(PeopleBase people, Integer peopleId){
         return PeopleEntity
                 .builder()
-                .id(peopleId)
+                .idSwappi(peopleId)
                 .name(people.getName())
                 .birthYear(people.getBirthYear())
                 .eyeColor(people.getEyeColor())

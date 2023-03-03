@@ -28,7 +28,7 @@ public class PlanetMapper {
 
     public static PlanetEntity PlanetSwapiToPlanetEntity(PlanetSwapi planetSwapi, Integer planetId) {
         PlanetEntity planetEntity = new PlanetEntity();
-        planetEntity.setId(planetId);
+        planetEntity.setIdSwappi(planetId);
         planetEntity.setClimate(planetSwapi.getClimate());
         planetEntity.setClimate(planetSwapi.getClimate());
         planetEntity.setDiameter(planetSwapi.getDiameter());

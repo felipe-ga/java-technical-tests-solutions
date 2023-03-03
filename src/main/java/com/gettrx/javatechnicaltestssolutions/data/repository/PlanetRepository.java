@@ -11,5 +11,5 @@ import java.util.Optional;
  * @version 1.0
  */
 public interface PlanetRepository extends CrudRepository<PlanetEntity, Integer> {
-    Optional<PlanetEntity> findById(Integer planetId);
+    Optional<PlanetEntity> findByIdSwappi(Integer planetId);
 }

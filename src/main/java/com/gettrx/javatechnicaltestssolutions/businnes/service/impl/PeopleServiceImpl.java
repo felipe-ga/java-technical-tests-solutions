@@ -50,7 +50,7 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public Optional<PeopleBase> getPeopleId(Integer peopleId) {
         try {
-            Optional<PeopleEntity> peopleEntity = repository.findById(peopleId);
+            Optional<PeopleEntity> peopleEntity = repository.findByIdSwappi(peopleId);
             if (peopleEntity.isPresent() && peopleEntity.get().getId() > 0) {
                 log.debug("people found inside db {}", peopleId);
                 return Optional.ofNullable(PeopleMapper.peopleEntityToPeople(peopleEntity.get()));
@@ -58,7 +58,8 @@ public class PeopleServiceImpl implements PeopleService {
             Optional<PeopleBase> people = peopleClient.getPeopleById(peopleId);
             if(people.isPresent()){
                 log.debug("saving people inside db {}", peopleId);
-                repository.save(PeopleMapper.peopleToPeopleEntity(people.get(), peopleId));
+                PeopleEntity p = PeopleMapper.peopleToPeopleEntity(people.get(), peopleId);
+                repository.save(p);
             }
             return people;
         } catch (Exception exception) {

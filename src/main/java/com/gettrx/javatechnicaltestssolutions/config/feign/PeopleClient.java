@@ -3,6 +3,7 @@ package com.gettrx.javatechnicaltestssolutions.config.feign;
 import com.gettrx.javatechnicaltestssolutions.data.dto.PeopleBase;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PeopleSwapiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +16,8 @@ import java.util.Optional;
 @FeignClient(name = "peopleClient", url = "${host.url.service.swapi}")
 public interface PeopleClient {
     @RequestMapping(method = RequestMethod.GET, value = "${host.uri.service.swapi.people}")
-    Optional<PeopleSwapiResponse> getAllPeople(@RequestParam(value = "page") Integer page);
+    Optional<PeopleSwapiResponse> getAllPeople(@RequestParam(value = "page") Integer idPage);
 
     @RequestMapping(method = RequestMethod.GET, value = "${host.uri.service.swapi.peopleById}")
-    Optional<PeopleBase> getPeopleById(@RequestParam(value = "peopleId") Integer peopleId);
+    Optional<PeopleBase> getPeopleById(@PathVariable(value = "peopleId") Integer peopleId);
 }

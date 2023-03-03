@@ -54,7 +54,7 @@ class PeopleServiceImplTest {
     @BeforeEach
     public void setup() {
         when(peopleClient.getAllPeople(anyInt())).thenReturn(getPeopleSwapiResponse());
-        when(repository.findById(anyInt())).thenReturn(getPeopleEntity());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(getPeopleEntity());
         when(peopleClient.getPeopleById(anyInt())).thenReturn(getPeopleBase());
         when(repository.save(any())).thenReturn(getPeopleEntity().get());
     }
@@ -116,7 +116,7 @@ class PeopleServiceImplTest {
     void should_returnAPeopleFromSwapiApiAndSaveInsideDb_when_idPeopleDoesNotExist() {
         Optional<PeopleEntity> peopleEntity = getPeopleEntity();
         peopleEntity.get().setId(0);
-        when(repository.findById(anyInt())).thenReturn(peopleEntity);
+        when(repository.findByIdSwappi(anyInt())).thenReturn(peopleEntity);
         Optional<PeopleBase> response = peopleService.getPeopleId(1);
         String expected = "Luke Skywalker";
         String actual = response.get().getName();
@@ -125,7 +125,7 @@ class PeopleServiceImplTest {
 
     @Test
     void should_returnAPeopleFromSwapiApiAndSaveInsideDb_when_recordDoesNotExist() {
-        when(repository.findById(anyInt())).thenReturn(Optional.empty());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(Optional.empty());
         Optional<PeopleBase> response = peopleService.getPeopleId(1);
         String expected = "Luke Skywalker";
         String actual = response.get().getName();
@@ -134,7 +134,7 @@ class PeopleServiceImplTest {
 
     @Test
     void should_returnEmptyPeople_when_recordDoesNotExistInSwapiApi() {
-        when(repository.findById(anyInt())).thenReturn(Optional.empty());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(Optional.empty());
         when(peopleClient.getPeopleById(anyInt())).thenReturn(Optional.empty());
         Optional<PeopleBase> response = peopleService.getPeopleId(1);
         assertFalse(response.isPresent());
@@ -142,7 +142,7 @@ class PeopleServiceImplTest {
 
     @Test
     void should_returnEmptyPeople_when_someErrorHappen() {
-        when(repository.findById(anyInt())).thenThrow(NullPointerException.class);
+        when(repository.findByIdSwappi(anyInt())).thenThrow(NullPointerException.class);
         Optional<PeopleBase> response = peopleService.getPeopleId(1);
         assertFalse(response.isPresent());
     }

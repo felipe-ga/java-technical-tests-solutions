@@ -3,10 +3,12 @@ package com.gettrx.javatechnicaltestssolutions.data.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author galindoaguilarf
@@ -15,11 +17,16 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "planet")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlanetEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull(message = "idSwappi is is required")
+    private Integer idSwappi;
 
     @NotEmpty(message = "climate is is required")
     private String climate;

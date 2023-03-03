@@ -50,7 +50,7 @@ class PlanetServiceImplTest {
     @BeforeEach
     public void setup() {
         when(planetClient.getAllPlanets(anyInt())).thenReturn(getPlanetsSwapiResponse());
-        when(repository.findById(anyInt())).thenReturn(getPlanetEntity());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(getPlanetEntity());
         when(planetClient.getPlanetsById(anyInt())).thenReturn(getPlanetSwapi());
 
     }
@@ -104,7 +104,7 @@ class PlanetServiceImplTest {
     void should_returnAPlanetFromSwapiApiAndSaveInsideDb_when_idPlanetDoesNotExist() {
         Optional<PlanetEntity> planetEntity = getPlanetEntity();
         planetEntity.get().setId(0);
-        when(repository.findById(anyInt())).thenReturn(planetEntity);
+        when(repository.findByIdSwappi(anyInt())).thenReturn(planetEntity);
         Optional<Planet> response = planetService.getPlanetById(1);
         String expected = "Tatooine";
         String actual = response.get().getName();
@@ -113,7 +113,7 @@ class PlanetServiceImplTest {
 
     @Test
     void should_returnAPlanetFromSwapiApiAndSaveInsideDb_when_recordDoesNotExist() {
-        when(repository.findById(anyInt())).thenReturn(Optional.empty());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(Optional.empty());
         Optional<Planet> response = planetService.getPlanetById(1);
         String expected = "Tatooine";
         String actual = response.get().getName();
@@ -122,7 +122,7 @@ class PlanetServiceImplTest {
 
     @Test
     void should_returnEmptyPlanet_when_recordDoesNotExistInSwapiApi() {
-        when(repository.findById(anyInt())).thenReturn(Optional.empty());
+        when(repository.findByIdSwappi(anyInt())).thenReturn(Optional.empty());
         when(planetClient.getPlanetsById(anyInt())).thenReturn(Optional.empty());
         Optional<Planet> response = planetService.getPlanetById(1);
         assertFalse(response.isPresent());
@@ -130,7 +130,7 @@ class PlanetServiceImplTest {
 
     @Test
     void should_returnEmptyPlanet_when_someErrorHappen() {
-        when(repository.findById(anyInt())).thenThrow(NullPointerException.class);
+        when(repository.findByIdSwappi(anyInt())).thenThrow(NullPointerException.class);
         Optional<Planet> response = planetService.getPlanetById(1);
         assertFalse(response.isPresent());
     }

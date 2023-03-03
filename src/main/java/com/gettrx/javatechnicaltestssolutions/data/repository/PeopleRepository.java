@@ -11,5 +11,5 @@ import java.util.Optional;
  * @version 1.0
  */
 public interface PeopleRepository extends CrudRepository<PeopleEntity, Integer> {
-    Optional<PeopleEntity> findById(Integer peopleId);
+    Optional<PeopleEntity> findByIdSwappi(Integer peopleId);
 }

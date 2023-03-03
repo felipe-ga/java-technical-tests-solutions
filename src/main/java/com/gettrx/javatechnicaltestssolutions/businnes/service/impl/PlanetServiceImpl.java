@@ -57,7 +57,7 @@ public class PlanetServiceImpl implements PlanetService {
     @Override
     public Optional<Planet> getPlanetById(Integer planetId) {
         try {
-            Optional<PlanetEntity> planetEntity = repository.findById(planetId);
+            Optional<PlanetEntity> planetEntity = repository.findByIdSwappi(planetId);
             if (planetEntity.isPresent() && planetEntity.get().getId() > 0) {
                 log.debug("planet found inside db {}", planetId);
                 return Optional.ofNullable(PlanetMapper.PlanetEntityToPlanet(planetEntity.get()));
