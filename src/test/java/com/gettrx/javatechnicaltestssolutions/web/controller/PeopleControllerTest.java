@@ -138,7 +138,7 @@ class PeopleControllerTest {
         try{
             peopleController.save(getPeople().get());
         }catch(ResponseStatusException exception){
-            String expected = "404 NOT_FOUND \"Error save people\"";
+            String expected = "500 INTERNAL_SERVER_ERROR \"Error save people\"";
             String actual = exception.getMessage();
             assertEquals(expected, actual);
         }

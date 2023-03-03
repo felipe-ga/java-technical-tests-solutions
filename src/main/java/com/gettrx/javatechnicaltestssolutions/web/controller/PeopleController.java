@@ -7,6 +7,9 @@ import com.gettrx.javatechnicaltestssolutions.data.dto.PeopleBase;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PeopleResponse;
 import com.gettrx.javatechnicaltestssolutions.businnes.service.PeopleService;
 import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +31,12 @@ public class PeopleController {
     private PeopleService peopleService;
 
     @GetMapping("/")
+    @ApiOperation(value = "Find all people",
+            notes = "return a list of people")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "people found"),
+            @ApiResponse(code = 404, message = "people not found"),
+            @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<PeopleResponse> getAllPeople(@Valid @RequestParam(value = "page") Integer page) {
         try {
             PeopleResponse peopleResponse = new PeopleResponse();
@@ -45,6 +54,12 @@ public class PeopleController {
     }
 
     @GetMapping("/{peopleId}")
+    @ApiOperation(value = "Find people by id",
+            notes = "return a people object")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "people found"),
+            @ApiResponse(code = 404, message = "people not found"),
+            @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<PeopleBase> getPeopleById(@Valid @PathVariable Integer peopleId) {
         Optional<PeopleBase> people = peopleService.getPeopleId(peopleId);
         if (!people.isPresent()) {
@@ -55,12 +70,17 @@ public class PeopleController {
     }
 
     @PostMapping("/")
+    @ApiOperation(value = "save people",
+            notes = "return a people object")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "people save successfully"),
+            @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<People> save(@Valid @RequestBody PeopleBase peopleBase) {
         Optional<People> people = peopleService.save(peopleBase);
         if (people.isPresent() && people.get().getId() > 0) {
             return new ResponseEntity<>(people.get(), HttpStatus.OK);
         }
         throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, PeopleControllerConstant.ERROR_SAVE_MESSAGE);
+                HttpStatus.INTERNAL_SERVER_ERROR, PeopleControllerConstant.ERROR_SAVE_MESSAGE);
     }
 }

@@ -4,6 +4,9 @@ package com.gettrx.javatechnicaltestssolutions.web.controller;
 import com.gettrx.javatechnicaltestssolutions.businnes.service.PlanetService;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsResponse;
 import com.gettrx.javatechnicaltestssolutions.data.dto.Planet;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,12 @@ public class PlanetController {
     private PlanetService planetService;
 
     @GetMapping("/")
+    @ApiOperation(value = "get all planets",
+            notes = "return list of planets")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "planets found"),
+            @ApiResponse(code = 404, message = "planets not found"),
+            @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<PlanetsResponse> getAllPlanets(@Valid @RequestParam(value = "page") Integer page) {
         try {
             PlanetsResponse planetsResponse = new PlanetsResponse();
@@ -41,6 +50,12 @@ public class PlanetController {
     }
 
     @GetMapping("/{planetId}")
+    @ApiOperation(value = "get planet by id",
+            notes = "return a planet object")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "planet found"),
+            @ApiResponse(code = 404, message = "planet not found"),
+            @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<Planet> getPlanetById(@Valid @PathVariable Integer planetId) {
         Optional<Planet> planet = planetService.getPlanetById(planetId);
         if(!planet.isPresent()){
