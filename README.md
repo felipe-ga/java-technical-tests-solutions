@@ -21,6 +21,9 @@ This project allows search planets/people with a specific page and search any pl
 - To finish the microservice, we need to run the next command again "docker-compose down"
 
 
+## Components diagram
+![diagram](img/diagram.png)
+
 ## Documentation
 - You can visit documentation for more information about the API in this link
     - http://localhost:8080/swagger-ui.html
