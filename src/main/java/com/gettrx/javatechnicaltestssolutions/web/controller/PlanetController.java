@@ -7,6 +7,7 @@ import com.gettrx.javatechnicaltestssolutions.data.dto.Planet;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("${api.prefix}${api.version}planets")
+@Slf4j
 public class PlanetController {
     @Autowired
     private PlanetService planetService;
@@ -39,10 +41,13 @@ public class PlanetController {
             planetsResponse.setPlanets(planetService.getAllPlanets(page));
             HttpStatus status = HttpStatus.OK;
             if (planetsResponse.getPlanets().isEmpty()) {
+                log.error("planets not found");
                 status = HttpStatus.NOT_FOUND;
             }
+            log.error("planets found");
             return new ResponseEntity<>(planetsResponse, status);
         } catch (Exception exception) {
+            log.error("planets not found");
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, "Planets Not Found", exception);
         }
@@ -59,9 +64,11 @@ public class PlanetController {
     public ResponseEntity<Planet> getPlanetById(@Valid @PathVariable Integer planetId) {
         Optional<Planet> planet = planetService.getPlanetById(planetId);
         if(!planet.isPresent()){
+            log.debug("planet not found {}", planetId);
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Planet Not Found");
         }
+        log.debug("planet found {}", planetId);
         return new ResponseEntity<>(planet.get(), HttpStatus.OK);
     }
 }

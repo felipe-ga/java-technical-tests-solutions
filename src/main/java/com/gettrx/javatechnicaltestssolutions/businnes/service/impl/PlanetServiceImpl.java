@@ -59,12 +59,12 @@ public class PlanetServiceImpl implements PlanetService {
         try {
             Optional<PlanetEntity> planetEntity = repository.findById(planetId);
             if (planetEntity.isPresent() && planetEntity.get().getId() > 0) {
-                log.info("planet found inside db {}", planetId);
+                log.debug("planet found inside db {}", planetId);
                 return Optional.ofNullable(PlanetMapper.PlanetEntityToPlanet(planetEntity.get()));
             }
             Optional<PlanetSwapi> planet = planetClient.getPlanetsById(planetId);
             if (planet.isPresent()) {
-                log.info("saving planet inside db {}", planetId);
+                log.debug("saving planet inside db {}", planetId);
                 repository.save(PlanetMapper.PlanetSwapiToPlanetEntity(planet.get(), planetId));
                 return Optional.ofNullable(PlanetMapper.PlanetSwapiToPlanetDto(planet.get()));
             }else{

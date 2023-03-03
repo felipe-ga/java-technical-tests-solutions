@@ -1,6 +1,5 @@
 package com.gettrx.javatechnicaltestssolutions.config.feign;
 
-import com.gettrx.javatechnicaltestssolutions.data.dto.People;
 import com.gettrx.javatechnicaltestssolutions.data.dto.PeopleBase;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PeopleSwapiResponse;
 import org.springframework.cloud.openfeign.FeignClient;

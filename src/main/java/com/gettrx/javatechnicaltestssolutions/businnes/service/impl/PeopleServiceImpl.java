@@ -52,12 +52,12 @@ public class PeopleServiceImpl implements PeopleService {
         try {
             Optional<PeopleEntity> peopleEntity = repository.findById(peopleId);
             if (peopleEntity.isPresent() && peopleEntity.get().getId() > 0) {
-                log.info("people found inside db {}", peopleId);
+                log.debug("people found inside db {}", peopleId);
                 return Optional.ofNullable(PeopleMapper.peopleEntityToPeople(peopleEntity.get()));
             }
             Optional<PeopleBase> people = peopleClient.getPeopleById(peopleId);
             if(people.isPresent()){
-                log.info("saving people inside db {}", peopleId);
+                log.debug("saving people inside db {}", peopleId);
                 repository.save(PeopleMapper.peopleToPeopleEntity(people.get(), peopleId));
             }
             return people;

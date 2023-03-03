@@ -10,6 +10,7 @@ import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("${api.prefix}${api.version}people")
+@Slf4j
 public class PeopleController {
     @Autowired
     private PeopleService peopleService;
@@ -47,6 +49,7 @@ public class PeopleController {
             }
             return new ResponseEntity<>(peopleResponse, status);
         } catch (Exception exception) {
+            log.error("Exception {}", exception.getMessage());
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, PeopleControllerConstant.ERROR_NOT_FOUND_MESSAGE, exception);
         }
@@ -63,6 +66,7 @@ public class PeopleController {
     public ResponseEntity<PeopleBase> getPeopleById(@Valid @PathVariable Integer peopleId) {
         Optional<PeopleBase> people = peopleService.getPeopleId(peopleId);
         if (!people.isPresent()) {
+            log.debug("people not found {}", peopleId);
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, PeopleControllerConstant.ERROR_NOT_FOUND_MESSAGE);
         }
@@ -78,8 +82,10 @@ public class PeopleController {
     public ResponseEntity<People> save(@Valid @RequestBody PeopleBase peopleBase) {
         Optional<People> people = peopleService.save(peopleBase);
         if (people.isPresent() && people.get().getId() > 0) {
+            log.debug("people was save successfully {}", peopleBase.toString());
             return new ResponseEntity<>(people.get(), HttpStatus.OK);
         }
+        log.debug("people was not save successfully {}", peopleBase.toString());
         throw new ResponseStatusException(
                 HttpStatus.INTERNAL_SERVER_ERROR, PeopleControllerConstant.ERROR_SAVE_MESSAGE);
     }
