@@ -27,9 +27,44 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+
+			<!-- exclude junit 4 -->
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- junit 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.7.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -82,15 +117,26 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
 			<!-- JaCoCo code coverage plugin -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>com/gettrx/javatechnicaltestsolutions/data/**</exclude>
-						<exclude>com/gettrx/javatechnicaltestsolutions/config/**</exclude>
-						<exclude>com/gettrx/javatechnicaltestsolutions/JavaTechnicalTestsSolutionsApplication.class</exclude>
+						<exclude>com/gettrx/javatechnicaltestssolutions/data/**</exclude>
+						<exclude>com/gettrx/javatechnicaltestssolutions/config/**</exclude>
+						<exclude>com/gettrx/javatechnicaltestssolutions/constant/**</exclude>
+						<exclude>com/gettrx/javatechnicaltestssolutions/JavaTechnicalTestsSolutionsApplication.class</exclude>
 					</excludes>
 				</configuration>
 				<version>0.8.5</version>

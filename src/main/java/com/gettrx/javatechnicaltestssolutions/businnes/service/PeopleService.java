@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface PeopleService {
     List<PeopleBase> getAllPeople(Integer page);
 
-    Optional<People> getPeopleId(Integer peopleId);
+    Optional<PeopleBase> getPeopleId(Integer peopleId);
 
     Optional<People> save(PeopleBase people);
 }

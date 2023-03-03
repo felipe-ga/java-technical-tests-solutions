@@ -35,7 +35,6 @@ public class PeopleMapper {
         people.setHeight(peopleEntity.getHeight());
         people.setHomeWorld(peopleEntity.getHomeWorld());
         people.setMass(peopleEntity.getMass());
-        people.setMass(peopleEntity.getMass());
         people.setSkinColor(peopleEntity.getSkinColor());
         people.setCreated(peopleEntity.getCreated());
         people.setEdited(peopleEntity.getEdited());

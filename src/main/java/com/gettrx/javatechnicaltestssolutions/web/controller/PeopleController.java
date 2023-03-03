@@ -39,14 +39,14 @@ public class PeopleController {
             return new ResponseEntity<>(peopleResponse, status);
         } catch (Exception exception) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, PeopleControllerConstant.ERROR_NOT_FOUND_MESSAGE, exception);
+                    HttpStatus.INTERNAL_SERVER_ERROR, PeopleControllerConstant.ERROR_NOT_FOUND_MESSAGE, exception);
         }
 
     }
 
     @GetMapping("/{peopleId}")
-    public ResponseEntity<People> getPeopleById(@Valid @PathVariable Integer peopleId) {
-        Optional<People> people = peopleService.getPeopleId(peopleId);
+    public ResponseEntity<PeopleBase> getPeopleById(@Valid @PathVariable Integer peopleId) {
+        Optional<PeopleBase> people = peopleService.getPeopleId(peopleId);
         if (!people.isPresent()) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, PeopleControllerConstant.ERROR_NOT_FOUND_MESSAGE);

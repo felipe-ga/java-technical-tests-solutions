@@ -30,7 +30,6 @@ public class PlanetMapper {
         PlanetEntity planetEntity = new PlanetEntity();
         planetEntity.setId(planetId);
         planetEntity.setClimate(planetSwapi.getClimate());
-        planetEntity.setId(planetId);
         planetEntity.setClimate(planetSwapi.getClimate());
         planetEntity.setDiameter(planetSwapi.getDiameter());
         planetEntity.setGravity(planetSwapi.getGravity());

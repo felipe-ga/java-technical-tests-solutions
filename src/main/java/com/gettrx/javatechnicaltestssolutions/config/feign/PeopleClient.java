@@ -19,5 +19,5 @@ public interface PeopleClient {
     Optional<PeopleSwapiResponse> getAllPeople(@RequestParam(value = "page") Integer page);
 
     @RequestMapping(method = RequestMethod.GET, value = "${host.uri.service.swapi.peopleById}")
-    Optional<People> getPeopleById(@RequestParam(value = "peopleId") Integer peopleId);
+    Optional<PeopleBase> getPeopleById(@RequestParam(value = "peopleId") Integer peopleId);
 }

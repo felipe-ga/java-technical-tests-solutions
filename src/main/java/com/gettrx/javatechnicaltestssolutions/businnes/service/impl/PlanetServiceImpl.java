@@ -66,8 +66,11 @@ public class PlanetServiceImpl implements PlanetService {
             if (planet.isPresent()) {
                 log.info("saving planet inside db {}", planetId);
                 repository.save(PlanetMapper.PlanetSwapiToPlanetEntity(planet.get(), planetId));
+                return Optional.ofNullable(PlanetMapper.PlanetSwapiToPlanetDto(planet.get()));
+            }else{
+                return Optional.empty();
             }
-            return Optional.ofNullable(PlanetMapper.PlanetSwapiToPlanetDto(planet.get()));
+
         } catch (Exception exception) {
             log.error("Exception {}", exception.getMessage());
             return Optional.empty();

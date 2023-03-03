@@ -48,14 +48,14 @@ public class PeopleServiceImpl implements PeopleService {
     }
 
     @Override
-    public Optional<People> getPeopleId(Integer peopleId) {
+    public Optional<PeopleBase> getPeopleId(Integer peopleId) {
         try {
             Optional<PeopleEntity> peopleEntity = repository.findById(peopleId);
             if (peopleEntity.isPresent() && peopleEntity.get().getId() > 0) {
                 log.info("people found inside db {}", peopleId);
                 return Optional.ofNullable(PeopleMapper.peopleEntityToPeople(peopleEntity.get()));
             }
-            Optional<People> people = peopleClient.getPeopleById(peopleId);
+            Optional<PeopleBase> people = peopleClient.getPeopleById(peopleId);
             if(people.isPresent()){
                 log.info("saving people inside db {}", peopleId);
                 repository.save(PeopleMapper.peopleToPeopleEntity(people.get(), peopleId));

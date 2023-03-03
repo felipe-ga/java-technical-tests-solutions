@@ -35,7 +35,7 @@ public class PlanetController {
             return new ResponseEntity<>(planetsResponse, status);
         } catch (Exception exception) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Planets Not Found", exception);
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Planets Not Found", exception);
         }
 
     }
