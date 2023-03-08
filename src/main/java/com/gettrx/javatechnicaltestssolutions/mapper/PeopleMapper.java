@@ -6,7 +6,7 @@ import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 
 
 public class PeopleMapper {
-    public static PeopleEntity peopleToPeopleEntity(PeopleBase people, Integer peopleId){
+    public static PeopleEntity peopleToPeopleEntity(PeopleBase people, Integer peopleId) {
         return PeopleEntity
                 .builder()
                 .idSwappi(peopleId)
@@ -24,7 +24,8 @@ public class PeopleMapper {
                 .url(people.getUrl())
                 .build();
     }
-    public static People peopleEntityToPeople(PeopleEntity peopleEntity){
+
+    public static People peopleEntityToPeople(PeopleEntity peopleEntity) {
         People people = new People();
         people.setId(peopleEntity.getId());
         people.setName(peopleEntity.getName());

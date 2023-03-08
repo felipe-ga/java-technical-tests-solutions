@@ -2,14 +2,11 @@ package com.gettrx.javatechnicaltestssolutions.businnes.service.impl;
 
 import com.gettrx.javatechnicaltestssolutions.businnes.service.PlanetService;
 import com.gettrx.javatechnicaltestssolutions.config.feign.PlanetClient;
-import com.gettrx.javatechnicaltestssolutions.data.dto.People;
+import com.gettrx.javatechnicaltestssolutions.data.dto.Planet;
 import com.gettrx.javatechnicaltestssolutions.data.dto.PlanetSwapi;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsSwapiResponse;
-import com.gettrx.javatechnicaltestssolutions.data.dto.Planet;
-import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 import com.gettrx.javatechnicaltestssolutions.data.entity.PlanetEntity;
 import com.gettrx.javatechnicaltestssolutions.data.repository.PlanetRepository;
-import com.gettrx.javatechnicaltestssolutions.mapper.PeopleMapper;
 import com.gettrx.javatechnicaltestssolutions.mapper.PlanetMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +64,7 @@ public class PlanetServiceImpl implements PlanetService {
                 log.debug("saving planet inside db {}", planetId);
                 repository.save(PlanetMapper.PlanetSwapiToPlanetEntity(planet.get(), planetId));
                 return Optional.ofNullable(PlanetMapper.PlanetSwapiToPlanetDto(planet.get()));
-            }else{
+            } else {
                 return Optional.empty();
             }
 

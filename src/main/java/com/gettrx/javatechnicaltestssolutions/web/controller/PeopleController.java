@@ -1,12 +1,11 @@
 package com.gettrx.javatechnicaltestssolutions.web.controller;
 
 
+import com.gettrx.javatechnicaltestssolutions.businnes.service.PeopleService;
 import com.gettrx.javatechnicaltestssolutions.constant.PeopleControllerConstant;
 import com.gettrx.javatechnicaltestssolutions.data.dto.People;
 import com.gettrx.javatechnicaltestssolutions.data.dto.PeopleBase;
 import com.gettrx.javatechnicaltestssolutions.data.dto.response.PeopleResponse;
-import com.gettrx.javatechnicaltestssolutions.businnes.service.PeopleService;
-import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 /**

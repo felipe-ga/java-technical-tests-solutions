@@ -1,6 +1,5 @@
 package com.gettrx.javatechnicaltestssolutions.data.repository;
 
-import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 import com.gettrx.javatechnicaltestssolutions.data.entity.PlanetEntity;
 import org.springframework.data.repository.CrudRepository;
 

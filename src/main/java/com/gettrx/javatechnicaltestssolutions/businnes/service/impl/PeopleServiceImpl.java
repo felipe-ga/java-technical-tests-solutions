@@ -56,7 +56,7 @@ public class PeopleServiceImpl implements PeopleService {
                 return Optional.ofNullable(PeopleMapper.peopleEntityToPeople(peopleEntity.get()));
             }
             Optional<PeopleBase> people = peopleClient.getPeopleById(peopleId);
-            if(people.isPresent()){
+            if (people.isPresent()) {
                 log.debug("saving people inside db {}", peopleId);
                 PeopleEntity p = PeopleMapper.peopleToPeopleEntity(people.get(), peopleId);
                 repository.save(p);

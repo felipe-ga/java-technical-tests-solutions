@@ -14,8 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class JavaTechnicalTestsSolutionsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JavaTechnicalTestsSolutionsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(JavaTechnicalTestsSolutionsApplication.class, args);
+    }
 
 }

@@ -11,5 +11,6 @@ import java.util.Optional;
  */
 public interface PlanetService {
     List<Planet> getAllPlanets(Integer page);
+
     Optional<Planet> getPlanetById(Integer planetById);
 }

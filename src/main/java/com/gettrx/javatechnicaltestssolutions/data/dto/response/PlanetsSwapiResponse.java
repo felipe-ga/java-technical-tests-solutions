@@ -15,7 +15,8 @@ import java.util.List;
 public class PlanetsSwapiResponse implements Serializable {
     private static final long serialVersionUID = 7666926007441713185L;
     private List<PlanetSwapi> results;
-    public PlanetsSwapiResponse(){
+
+    public PlanetsSwapiResponse() {
         this.results = new ArrayList<>();
     }
 }

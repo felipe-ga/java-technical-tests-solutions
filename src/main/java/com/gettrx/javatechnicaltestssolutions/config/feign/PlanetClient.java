@@ -1,7 +1,7 @@
 package com.gettrx.javatechnicaltestssolutions.config.feign;
 
-import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsSwapiResponse;
 import com.gettrx.javatechnicaltestssolutions.data.dto.PlanetSwapi;
+import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsSwapiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

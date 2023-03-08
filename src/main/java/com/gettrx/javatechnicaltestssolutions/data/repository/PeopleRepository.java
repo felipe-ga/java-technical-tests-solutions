@@ -3,7 +3,6 @@ package com.gettrx.javatechnicaltestssolutions.data.repository;
 import com.gettrx.javatechnicaltestssolutions.data.entity.PeopleEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**

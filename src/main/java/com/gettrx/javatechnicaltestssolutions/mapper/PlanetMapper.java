@@ -52,6 +52,6 @@ public class PlanetMapper {
         planet.setTerrain(planetEntity.getTerrain());
         planet.setUrl(planetEntity.getUrl());
         planet.setResidents(planetEntity.getResidents());
-        return  planet;
+        return planet;
     }
 }

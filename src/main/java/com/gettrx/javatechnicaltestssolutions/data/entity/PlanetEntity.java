@@ -1,7 +1,6 @@
 package com.gettrx.javatechnicaltestssolutions.data.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
@@ -44,8 +43,8 @@ public class PlanetEntity {
     private String population;
 
     @NotEmpty(message = "residents is is required")
-    @Column(columnDefinition="text")
-    @Type(type="org.hibernate.type.TextType")
+    @Column(columnDefinition = "text")
+    @Type(type = "org.hibernate.type.TextType")
     private String residents;
 
     @NotEmpty(message = "terrain is is required")

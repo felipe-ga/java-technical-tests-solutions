@@ -2,8 +2,8 @@ package com.gettrx.javatechnicaltestssolutions.web.controller;
 
 
 import com.gettrx.javatechnicaltestssolutions.businnes.service.PlanetService;
-import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsResponse;
 import com.gettrx.javatechnicaltestssolutions.data.dto.Planet;
+import com.gettrx.javatechnicaltestssolutions.data.dto.response.PlanetsResponse;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -63,7 +63,7 @@ public class PlanetController {
             @ApiResponse(code = 500, message = "internal server error")})
     public ResponseEntity<Planet> getPlanetById(@Valid @PathVariable Integer planetId) {
         Optional<Planet> planet = planetService.getPlanetById(planetId);
-        if(!planet.isPresent()){
+        if (!planet.isPresent()) {
             log.debug("planet not found {}", planetId);
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Planet Not Found");
